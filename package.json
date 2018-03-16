@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "R.Rijnberk",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  }
 }
