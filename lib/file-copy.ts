@@ -52,6 +52,18 @@ function fileCopy(config) {
     imports.local.map(copyFile);
 
     process.chdir(rootDir);
+
+    return getEntryRelatives(sourceFiles, imports.local);
+}
+
+function getEntryRelatives(sourceFiles, importConfigurations) {
+    return importConfigurations
+        .filter(isSourceFile.bind(sourceFiles))
+        .map(configuration => configuration.relative);
+}
+
+function isSourceFile(importConfiguration) {
+    return this.indexOf(importConfiguration.source) !== -1;
 }
 
 module.exports = fileCopy;
