@@ -10,10 +10,12 @@ function isLocalOrLib(premise, config) {
 }
 
 function createConfig(filePath) {
-    const root = path.resolve('./', this.root);
+    const root = path.resolve('./', this.root),
+        relative = path.relative(root, filePath);
     return {
         source: filePath,
-        destination: path.resolve('./', this.destination, path.relative(root, filePath))
+        destination: path.resolve('./', this.destination, relative),
+        relative
     }
 }
 

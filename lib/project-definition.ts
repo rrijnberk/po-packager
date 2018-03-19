@@ -6,7 +6,8 @@ function getPackageName(config) {
     return package_json.name.concat(config.postfix);
 }
 
-function createDefinitions(config) {
+function createDefinitions(config, files) {
+
 }
 
 function createPackage(config) {

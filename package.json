@@ -11,6 +11,7 @@
   "dependencies": {
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
+    "rimraf": "^2.6.2",
     "typescript": "^2.7.2"
   }
 }
