@@ -1,5 +1,6 @@
 {
+  "destination": "dist-po",
   "files": [ "**/*1.po.ts", "**/*00*.po.ts", "**/*2.po.ts", "**/*3.po.ts" , "**/*.po.ts" ],
-  "root": "./",
-  "destination": "dist-po"
+  "postfix": ".po",
+  "root": "./"
 }

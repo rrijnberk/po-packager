@@ -23,11 +23,6 @@ function getGlob(globPattern) {
     return glob.sync(globPattern);
 }
 
-function print(response) {
-    console.log('>', response);
-    return response;
-}
-
 function reduce(a, b) {
     return a.concat(b);
 }
@@ -43,14 +38,17 @@ function fileCopy(config) {
 
     process.chdir(filesDir);
 
+    console.log('> Resolving files');
     sourceFiles = config.files
         .map(getGlob)
         .reduce(reduce)
         .unique()
-        .map(resolve)
-        .map(print);
+        .map(resolve);
 
+    console.log('> Resolving imports');
     imports = getImports(config, sourceFiles);
+
+    console.log('> Copying required files');
     imports.local.map(copyFile);
 
     process.chdir(rootDir);
