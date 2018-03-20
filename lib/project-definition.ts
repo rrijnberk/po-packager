@@ -1,11 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
-const package_json = require(path.resolve(('./package.json')));
+const package_json = require(path.resolve('./package.json'));
 
 const newLine = '\n';
 
 function asExport(relativePath) {
-    return `export * from './${relativePath}';`;
+    return `export * from './${relativePath.replace('.ts', '')}';`;
 }
 
 function createDefinitions(config, files) {
@@ -17,14 +17,18 @@ function createDefinitions(config, files) {
 
     fs.ensureFileSync(filePath);
     fs.writeFileSync(filePath, content);
+    return filePath;
 }
 
 function createPackage(config) {
     const filePath = path.resolve('./', config.destination, 'package.json'),
+        packageName = getPackageName(config),
         packageContent = {
-            name: getPackageName(config),
-            version: package_json.version,
-            license: package_json.license
+            license: package_json.license,
+            main: packageName.concat('.js'),
+            name: packageName,
+            typings: packageName.concat('.ts'),
+            version: package_json.version
         };
 
     fs.ensureFileSync(filePath);
@@ -35,7 +39,9 @@ function createPackage(config) {
 }
 
 function getPackageName(config) {
-    return package_json.name.concat(config.postfix);
+    const nameSegments = package_json.name.split('/'),
+        name = nameSegments[nameSegments.length -1];
+    return name.concat(config.postfix);
 }
 
 module.exports = {

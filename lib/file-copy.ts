@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
-const getImports = require(path.resolve('./', 'lib/support/imports.ts'));
+const getImports = require('./support/imports.ts');
 
 /**
  * Enables the reduction of duplicates to unique values.

@@ -1,9 +1,11 @@
 const path = require('path');
-const fileCopy = require(path.resolve('./lib/file-copy.ts'));
 const rimraf = require('rimraf');
-const definition = require(path.resolve('./lib/project-definition.ts'));
 
-let config = require(path.resolve('./config/config.json'));
+const fileCopy = require('./file-copy.ts');
+const definition = require('./project-definition.ts');
+const compiler = require('./tsc-compiler.ts');
+
+let config = require('./../config/config.json');
 
 function createPackage(params) {
     if(params.config) {
@@ -17,13 +19,17 @@ function createPackage(params) {
     console.log(`Removing configured destination '${config.destination}' (if applicable).`);
     rimraf(config.destination, () => {
         console.log('Starting copy');
-        let entries = fileCopy(config);
+        let entries = fileCopy(config),
+            typingsFile;
 
         console.log('Creating package file');
         definition.createPackage(config);
 
         console.log('Creating typescript definitions');
-        definition.createDefinitions(config, entries);
+        typingsFile = definition.createDefinitions(config, entries);
+
+        console.log('Compiling typescript');
+        compiler.compile(typingsFile);
     });
 }
 

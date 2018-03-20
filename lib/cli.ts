@@ -2,7 +2,7 @@
 
 const path = require('path');
 const program = require('commander');
-const packager = require(path.resolve('./lib/po-packager.ts'));
+const packager = require('./po-packager.ts');
 
 const defaults = {
     config: 'po-packager.json'
