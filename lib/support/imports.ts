@@ -4,8 +4,9 @@ const typescript = require('typescript');
 const isLocal = isLocalOrLib.bind(null, false);
 const isLib = isLocalOrLib.bind(null, true);
 
+const libPath = path.resolve('./node_modules');
+
 function isLocalOrLib(premise, config) {
-    const libPath = path.resolve('./node_modules');
     return (config.source.indexOf(libPath) === 0) === premise;
 }
 
