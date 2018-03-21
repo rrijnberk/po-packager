@@ -1,12 +1,16 @@
-const path = require('path');
-const typescript = require('typescript');
+const ts = require('typescript');
 
 function compile(entryFilePath) {
-    console.log('compiling:', entryFilePath)
+    const options = {
+        module: ts.ModuleKind.UMD,
+        target: ts.ScriptTarget.ES2015,
+        sourceMap: true,
+        declaration: true
+    };
 
-    const program = typescript.createProgram([entryFilePath], {
-        target: typescript.ScriptTarget.ES5
-    });
+    console.log(options);
+
+    const program = ts.createProgram([entryFilePath], options);
     program.emit();
 }
 
