@@ -1,6 +1,6 @@
 {
   "name": "po-packager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A library for packaging page objects next to your own module.",
   "main": "cli/main.ts",
   "scripts": {

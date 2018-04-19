@@ -26,7 +26,7 @@ function createPackage(config) {
         packageContent = {
             license: package_json.license,
             main: packageName.concat('.js'),
-            name: packageName,
+            name: package_json.name.concat(config.postfix),
             typings: packageName.concat('.ts'),
             version: package_json.version
         };
