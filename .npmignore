@@ -1,0 +1,14 @@
+.idea/
+dist-po/
+node_modules/
+package/
+test/
+
+
+
+*.tgz
+
+
+*.iml
+po-packager*.json
+package-lock.json
